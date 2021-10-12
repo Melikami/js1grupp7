@@ -60,8 +60,8 @@ class Song {
     }
     //Amir: Make string of every Song objekt.
     songInfo() {
-      /* return "Låt " + this.song + " av " + this.artist + " från " + this.genre + "." ; */
-      return this;
+      return "Låt " + this.song + " av " + this.artist + " från " + this.genre + "." ;
+      /* return this; */
     }
   }
 
@@ -110,29 +110,16 @@ addPlaylist.addEventListener("click", function newSong() {
   
   
   function printSongs() {
-<<<<<<< HEAD
-    playlistDisplay.innerHTML = '';
-    if (playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.remove('hidden');
-   
-    playList.forEach((item, i) => {
-    let obj = item.songInfo();
-    let playlistItem = document.createElement('div');
 
-    playlistItem.innerHTML = `
-    <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="genre-display">${obj.genre}</p><i class="fas fa-check-circle"></i>`;
-
-    playlistDisplay.insertBefore(playlistItem, playlistItem.nextSibling);
-    });
-=======
       
       playList.forEach((item, i) => {
       songOutput += `<p id="song">${item.songInfo()} <i class="fas fa-minus-circle"></i><p id="">`;
       });
       output1.innerHTML = songOutput;
   }
->>>>>>> parent of f06d3e0... Add files via upload
+
   
-   }
+   
   //MELI: Cleans text input with click of a button
   function cleanInput() {
     document.getElementById("enterArtist").value = "";
