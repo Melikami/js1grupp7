@@ -1,35 +1,4 @@
 
-// Testdata
-//-------------------------------------------------------------------------
-
-let playlistTest = [];
-
-/* const outputDiv = document.getElementById('output');
-
-const outputTest = document.createElement('div');
-outputTest.classList.add('output-test');
-
-outputTest.innerText = 'Test';
-outputDiv.appendChild(outputTest); */
-/* 
-function Songtest(artist, song, genre, score){
-    this.artist = artist,
-    this.song = song,
-    this.genre = genre,
-    this.score = score
-}
-
-playlistTest.push(new Songtest('Britta', 'One more time', 'pop', 2));
-playlistTest.push(new Songtest('Hazelnut hobo', 'Covfef', 'rock', 4));
-playlistTest.push(new Songtest('Dagge', 'Greedy thief', 'country', 7));
-playlistTest.push(new Songtest('Locomotive Lars', 'chucka cho', 'alternative', 8));
-playlistTest.push(new Songtest('Helms deep', 'into the mountain', 'indie', 3));
-playlistTest.push(new Songtest('Abracadabra', 'pick a card', 'pop',5));
-playlistTest.push(new Songtest('Meli Montana', 'gumminos', 'hiphop', 4));
-playlistTest.push(new Songtest('Lens-Amir', 'photograph', 'indie', 9));
-playlistTest.push(new Songtest('Sebbe af Hans', 'Hansen of sweden', 'classical', 7));
-playlistTest.push(new Songtest('Tendonitis Tove', 'Strech', 'country', 1)); */
-
 function sortPlaylist(el) {
   // learned this here: https://www.youtube.com/watch?v=0d76_2sksWY
   playlistTest.sort((a,b) => {
@@ -60,13 +29,18 @@ class Song {
     }
     //Amir: Make string of every Song objekt.
     songInfo() {
-      return "Låt " + this.song + " av " + this.artist + " från " + this.genre + "." ;
-      /* return this; */
+      /* return "Låt " + this.song + " av " + this.artist + " från " + this.genre + "." ; */
+      return this;
     }
   }
 
   
 let playList = [];
+playList.push(new Song('Britta', 'One more time', 'pop'));
+playList.push(new Song('Hazelnut hobo', 'Covfef', 'rock'));
+playList.push(new Song('Dagge', 'Greedy thief', 'country'));
+playList.push(new Song('Locomotive Lars', 'chucka cho', 'alternative'));
+
 
   //MELI: Function to activate the script at the click of the button
 addPlaylist.addEventListener("click", function newSong() {
@@ -90,32 +64,45 @@ addPlaylist.addEventListener("click", function newSong() {
       //Amir: Write out song lite every time a new song pushes in.
       
     }
-
-    playList.push(new Song('Britta', 'One more time', 'pop'));
-    playList.push(new Song('Hazelnut hobo', 'Covfef', 'rock'));
-    playList.push(new Song('Dagge', 'Greedy thief', 'country'));
-    playList.push(new Song('Locomotive Lars', 'chucka cho', 'alternative'));
-    playList.push(new Song('Helms deep', 'into the mountain', 'indie'));
-    playList.push(new Song('Abracadabra', 'pick a card', 'pop'));
-    playList.push(new Song('Meli Montana', 'gumminos', 'hiphop'));
-    playList.push(new Song('Lens-Amir', 'photograph', 'indie'));
-    playList.push(new Song('Sebbe af Hans', 'Hansen of sweden', 'classical'));
-    playList.push(new Song('Tendonitis Tove', 'Strech', 'country'));
-
-    printSongs();
+    
+    printSongs(playList[playList.length - 1]);
     cleanInput();
   });
-
-  let songOutput = "";
   
   
-  function printSongs() {
+  function printSongs(item) {
 
-      
+    /* let songOutput = "";
       playList.forEach((item, i) => {
       songOutput += `<p id="song">${item.songInfo()} <i class="fas fa-minus-circle"></i><p id="">`;
       });
-      output1.innerHTML = songOutput;
+      output1.innerHTML = songOutput; */
+
+     /*  playlistItems.innerHTML = ''; */
+     
+     if (playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.remove('hidden');
+
+     //FOR TESTING EXISTING PLAYLIST
+      /* 
+    
+      playList.forEach((item, i) => {
+        let obj = item.songInfo();
+        let playlistItem = document.createElement('div');
+
+        playlistItem.innerHTML = `
+        <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="genre-display">${obj.genre}</p><i class="fas fa-minus-circle"></i>`;
+
+        playlistDisplay.insertBefore(playlistItem, playlistItem.nextSibling);
+      }); */
+
+      //FOR USERINPUT 
+      let obj = item.songInfo();
+        let playlistItem = document.createElement('div');
+
+        playlistItem.innerHTML = `
+        <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="genre-display">${obj.genre}</p><i class="fas fa-minus-circle"></i>`;
+
+        playlistDisplay.insertBefore(playlistItem, playlistItem.nextSibling);
   }
 
   

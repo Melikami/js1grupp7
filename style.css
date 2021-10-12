@@ -97,6 +97,7 @@ button:hover {
 
 .playlist-container > div {
   display: flex;
+  align-items: center;
 }
 
 .playlist-container > div:first-child {
@@ -120,7 +121,7 @@ button:hover {
 }
 
 .song-display {
-  width: 45%;
+  width: 40%;
 }
 
 .genre-display {
