@@ -110,6 +110,7 @@ addPlaylist.addEventListener("click", function newSong() {
   
   
   function printSongs() {
+<<<<<<< HEAD
     playlistDisplay.innerHTML = '';
     if (playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.remove('hidden');
    
@@ -122,6 +123,14 @@ addPlaylist.addEventListener("click", function newSong() {
 
     playlistDisplay.insertBefore(playlistItem, playlistItem.nextSibling);
     });
+=======
+      
+      playList.forEach((item, i) => {
+      songOutput += `<p id="song">${item.songInfo()} <i class="fas fa-minus-circle"></i><p id="">`;
+      });
+      output1.innerHTML = songOutput;
+  }
+>>>>>>> parent of f06d3e0... Add files via upload
   
    }
   //MELI: Cleans text input with click of a button
