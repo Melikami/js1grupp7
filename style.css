@@ -81,3 +81,64 @@ button:hover {
 #output {
   margin-top: 2rem;
 }
+
+.hidden {
+  visibility: hidden;
+}
+
+.playlist-container {
+  max-width: 800px;
+  margin: 2rem auto 0 auto;
+}
+
+.playlist-container > div {
+  display: flex;
+}
+
+.playlist-container > div:first-child {
+  background-color: rgb(34, 39, 21);
+  color: rgb(182, 180, 180);
+}
+
+.playlist-container > div:nth-child(even) {
+  background-color: rgb(84, 95, 56);
+}
+
+.artist-display,
+.song-display,
+.genre-display {
+  text-align: left;
+  padding: 0.4rem 2% 0.4rem 2%;
+}
+
+.artist-display {
+  width: 30%;
+}
+
+.song-display {
+  width: 45%;
+}
+
+.genre-display {
+  width: 25%;
+  padding-right: 2rem;
+}
+
+.playlist-headers {
+  margin-bottom: 1rem;
+}
+
+#artist-header:hover,
+#song-header:hover,
+#genre-header:hover {
+  background-color: rgb(19, 22, 12);
+  cursor: pointer;
+}
+
+/* .song {
+  margin: 0.2rem;
+} */
+
+footer {
+  margin-top: 2rem;
+}

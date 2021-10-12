@@ -48,6 +48,8 @@ function sortPlaylist(el) {
 
 //------------------------------------------------------------------------
 
+const playlistDisplay = document.querySelector('.playlist-container');
+
 
 //MELI: class Song to create new objects
 class Song {
@@ -58,7 +60,8 @@ class Song {
     }
     //Amir: Make string of every Song objekt.
     songInfo() {
-      return "Låt " + this.song + " av " + this.artist + " från " + this.genre + "." ;
+      /* return "Låt " + this.song + " av " + this.artist + " från " + this.genre + "." ; */
+      return this;
     }
   }
 
@@ -104,13 +107,22 @@ class Song {
   });
 
   let songOutput = "";
-
+  
+  
   function printSongs() {
+    if (playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.remove('hidden');
    
       playList.forEach((item, i) => {
-      songOutput += `<p id="song">${item.songInfo()}"<p id="">`;
+      let obj = item.songInfo();
+      let playlistItem = document.createElement('div');
+      playlistItem.innerHTML = `
+      <p class="artist-display">${obj.artist}</p>
+      <p class="song-display">${obj.song}</p>
+      <p class="genre-display">${obj.genre}</p>
+      `;
+      playlistDisplay.insertBefore(playlistItem, playlistItem.nextSibling);
       });
-      output1.innerHTML = songOutput;
+
   }
   
   //MELI: Cleans text input with click of a button
@@ -127,3 +139,4 @@ class Song {
     playList = [];
   });
 
+  
