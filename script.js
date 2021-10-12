@@ -91,16 +91,16 @@ class Song {
       
     }
 
-    playList.push(new Song('Britta', 'One more time', 'pop'));
-    playList.push(new Song('Hazelnut hobo', 'Covfef', 'rock'));
-    playList.push(new Song('Dagge', 'Greedy thief', 'country'));
-    playList.push(new Song('Locomotive Lars', 'chucka cho', 'alternative'));
-    playList.push(new Song('Helms deep', 'into the mountain', 'indie'));
-    playList.push(new Song('Abracadabra', 'pick a card', 'pop'));
-    playList.push(new Song('Meli Montana', 'gumminos', 'hiphop'));
-    playList.push(new Song('Lens-Amir', 'photograph', 'indie'));
-    playList.push(new Song('Sebbe af Hans', 'Hansen of sweden', 'classical'));
-    playList.push(new Song('Tendonitis Tove', 'Strech', 'country'));
+    // playList.push(new Song('Britta', 'One more time', 'pop'));
+    // playList.push(new Song('Hazelnut hobo', 'Covfef', 'rock'));
+    // playList.push(new Song('Dagge', 'Greedy thief', 'country'));
+    // playList.push(new Song('Locomotive Lars', 'chucka cho', 'alternative'));
+    // playList.push(new Song('Helms deep', 'into the mountain', 'indie'));
+    // playList.push(new Song('Abracadabra', 'pick a card', 'pop'));
+    // playList.push(new Song('Meli Montana', 'gumminos', 'hiphop'));
+    // playList.push(new Song('Lens-Amir', 'photograph', 'indie'));
+    // playList.push(new Song('Sebbe af Hans', 'Hansen of sweden', 'classical'));
+    // playList.push(new Song('Tendonitis Tove', 'Strech', 'country'));
 
     printSongs();
     cleanInput();
@@ -110,7 +110,8 @@ class Song {
   
   
   function printSongs() {
-    if (playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.remove('hidden');
+
+    if (playlistDisplay.classList.contains('hidden')) { playlistDisplay.classList.remove('hidden')};
    
       playList.forEach((item, i) => {
       let obj = item.songInfo();
@@ -121,7 +122,12 @@ class Song {
       <p class="genre-display">${obj.genre}</p>
       `;
       playlistDisplay.insertBefore(playlistItem, playlistItem.nextSibling);
-      });
+
+      
+      playList.forEach((item, i) => {
+      songOutput += `<p id="song">${item.songInfo()} <i class="fas fa-check-circle"></i><p id="">`;
+
+    });
 
   }
   
