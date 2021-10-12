@@ -1,24 +1,4 @@
-
-function sortPlaylist(el) {
-  // learned this here: https://www.youtube.com/watch?v=0d76_2sksWY
-  playlistTest.sort((a,b) => {
-    if(a[el].toLowerCase() < b[el].toLowerCase()) {
-      return -1;
-    }
-    if(a[el].toLowerCase() > b[el].toLowerCase()) {
-      return 1;
-    }
-    return 0;
-  });
-}
-
-/* sortPlaylist('genre'); */
-
-
-//------------------------------------------------------------------------
-
 const playlistDisplay = document.querySelector('.playlist-container');
-
 
 //MELI: class Song to create new objects
 class Song {
@@ -79,12 +59,11 @@ addPlaylist.addEventListener("click", function newSong() {
       output1.innerHTML = songOutput; */
 
      /*  playlistItems.innerHTML = ''; */
-     
+
      if (playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.remove('hidden');
 
      //FOR TESTING EXISTING PLAYLIST
       /* 
-    
       playList.forEach((item, i) => {
         let obj = item.songInfo();
         let playlistItem = document.createElement('div');
@@ -97,12 +76,12 @@ addPlaylist.addEventListener("click", function newSong() {
 
       //FOR USERINPUT 
       let obj = item.songInfo();
-        let playlistItem = document.createElement('div');
+      let playlistItem = document.createElement('div');
 
-        playlistItem.innerHTML = `
-        <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="genre-display">${obj.genre}</p><i class="fas fa-minus-circle"></i>`;
+      playlistItem.innerHTML = `
+      <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="genre-display">${obj.genre}</p><i class="fas fa-minus-circle"></i>`;
 
-        playlistDisplay.insertBefore(playlistItem, playlistItem.nextSibling);
+      playlistDisplay.insertBefore(playlistItem, playlistItem.nextSibling);
   }
 
   
@@ -121,5 +100,20 @@ addPlaylist.addEventListener("click", function newSong() {
     if (!playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.add('hidden');
     playList = [];
   });
+
+  function sortPlaylist(el) {
+    // learned this here: https://www.youtube.com/watch?v=0d76_2sksWY
+    playlistTest.sort((a,b) => {
+      if(a[el].toLowerCase() < b[el].toLowerCase()) {
+        return -1;
+      }
+      if(a[el].toLowerCase() > b[el].toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  
+  /* sortPlaylist('genre'); */
 
   
