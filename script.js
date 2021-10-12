@@ -48,6 +48,8 @@ function sortPlaylist(el) {
 
 //------------------------------------------------------------------------
 
+const playlistDisplay = document.querySelector('.playlist-container');
+
 
 //MELI: class Song to create new objects
 class Song {
@@ -58,15 +60,16 @@ class Song {
     }
     //Amir: Make string of every Song objekt.
     songInfo() {
-      return "Låt " + this.song + " av " + this.artist + " från " + this.genre + "." ;
+      /* return "Låt " + this.song + " av " + this.artist + " från " + this.genre + "." ; */
+      return this;
     }
   }
 
   
- let playList = [];
+let playList = [];
 
   //MELI: Function to activate the script at the click of the button
-  addPlaylist.addEventListener("click", function newSong() {
+addPlaylist.addEventListener("click", function newSong() {
     //Collecting values from the input fields
     let artist = document.getElementById("enterArtist").value;
     let song = document.getElementById("enterSong").value;
@@ -88,31 +91,48 @@ class Song {
       
     }
 
-    // playList.push(new Song('Britta', 'One more time', 'pop'));
-    // playList.push(new Song('Hazelnut hobo', 'Covfef', 'rock'));
-    // playList.push(new Song('Dagge', 'Greedy thief', 'country'));
-    // playList.push(new Song('Locomotive Lars', 'chucka cho', 'alternative'));
-    // playList.push(new Song('Helms deep', 'into the mountain', 'indie'));
-    // playList.push(new Song('Abracadabra', 'pick a card', 'pop'));
-    // playList.push(new Song('Meli Montana', 'gumminos', 'hiphop'));
-    // playList.push(new Song('Lens-Amir', 'photograph', 'indie'));
-    // playList.push(new Song('Sebbe af Hans', 'Hansen of sweden', 'classical'));
-    // playList.push(new Song('Tendonitis Tove', 'Strech', 'country'));
+    playList.push(new Song('Britta', 'One more time', 'pop'));
+    playList.push(new Song('Hazelnut hobo', 'Covfef', 'rock'));
+    playList.push(new Song('Dagge', 'Greedy thief', 'country'));
+    playList.push(new Song('Locomotive Lars', 'chucka cho', 'alternative'));
+    playList.push(new Song('Helms deep', 'into the mountain', 'indie'));
+    playList.push(new Song('Abracadabra', 'pick a card', 'pop'));
+    playList.push(new Song('Meli Montana', 'gumminos', 'hiphop'));
+    playList.push(new Song('Lens-Amir', 'photograph', 'indie'));
+    playList.push(new Song('Sebbe af Hans', 'Hansen of sweden', 'classical'));
+    playList.push(new Song('Tendonitis Tove', 'Strech', 'country'));
 
     printSongs();
     cleanInput();
   });
 
   let songOutput = "";
-
+  
+  
   function printSongs() {
+<<<<<<< HEAD
+    playlistDisplay.innerHTML = '';
+    if (playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.remove('hidden');
+   
+    playList.forEach((item, i) => {
+    let obj = item.songInfo();
+    let playlistItem = document.createElement('div');
+
+    playlistItem.innerHTML = `
+    <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="genre-display">${obj.genre}</p><i class="fas fa-check-circle"></i>`;
+
+    playlistDisplay.insertBefore(playlistItem, playlistItem.nextSibling);
+    });
+=======
       
       playList.forEach((item, i) => {
-      songOutput += `<p id="song">${item.songInfo()} <i class="fas fa-check-circle"></i><p id="">`;
+      songOutput += `<p id="song">${item.songInfo()} <i class="fas fa-minus-circle"></i><p id="">`;
       });
       output1.innerHTML = songOutput;
   }
+>>>>>>> parent of f06d3e0... Add files via upload
   
+   }
   //MELI: Cleans text input with click of a button
   function cleanInput() {
     document.getElementById("enterArtist").value = "";
@@ -124,6 +144,8 @@ class Song {
   cleanOutput.addEventListener("click", function cleanOutput() {
     document.getElementById("output").innerHTML = "";
     document.getElementById("output1").innerHTML = "";
+    if (!playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.add('hidden');
     playList = [];
   });
 
+  
