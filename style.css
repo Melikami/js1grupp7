@@ -23,6 +23,10 @@ body {
   background-color: rgb(55, 67, 34);
 }
 
+i {
+  padding: 1rem;
+}
+
 /* Spellista design */
 #playlist,
 #userText {
