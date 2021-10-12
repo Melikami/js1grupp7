@@ -110,7 +110,7 @@ addPlaylist.addEventListener("click", function newSong() {
   
   
   function printSongs() {
-
+    playlistDisplay.innerHTML = '';
     if (playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.remove('hidden');
    
     playList.forEach((item, i) => {
