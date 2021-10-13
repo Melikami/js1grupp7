@@ -1,4 +1,9 @@
 const playlistDisplay = document.querySelector('.playlist-container');
+/* const artistHeader = document.getElementById('artist-header');
+const songHeader = document.getElementById('song-header');
+const genreHeader = document.getElementById('genre-header'); */
+
+const listHeaders = document.querySelector('.playlist-headers');
 
 //MELI: class Song to create new objects
 class Song {
@@ -16,10 +21,11 @@ class Song {
 
   
 let playList = [];
-playList.push(new Song('Britta', 'One more time', 'pop'));
+/* playList.push(new Song('Britta', 'One more time', 'pop'));
 playList.push(new Song('Hazelnut hobo', 'Covfef', 'rock'));
 playList.push(new Song('Dagge', 'Greedy thief', 'country'));
 playList.push(new Song('Locomotive Lars', 'chucka cho', 'alternative'));
+playList.forEach(song => printSongs(song)); */
 
 
   //MELI: Function to activate the script at the click of the button
@@ -77,6 +83,7 @@ addPlaylist.addEventListener("click", function newSong() {
       //FOR USERINPUT 
       let obj = item.songInfo();
       let playlistItem = document.createElement('div');
+      playlistItem.classList.add('song');
 
       playlistItem.innerHTML = `
       <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="genre-display">${obj.genre}</p><i class="fas fa-minus-circle"></i>`;
@@ -102,18 +109,29 @@ addPlaylist.addEventListener("click", function newSong() {
   });
 
   function sortPlaylist(el) {
-    // learned this here: https://www.youtube.com/watch?v=0d76_2sksWY
-    playlistTest.sort((a,b) => {
-      if(a[el].toLowerCase() < b[el].toLowerCase()) {
-        return -1;
-      }
-      if(a[el].toLowerCase() > b[el].toLowerCase()) {
-        return 1;
-      }
-      return 0;
-    });
+
+    if(playList.length > 1) {
+      // learned this here: https://www.youtube.com/watch?v=0d76_2sksWY
+      playList.sort((a,b) => {
+        if(a[el].toLowerCase() < b[el].toLowerCase()) {
+          return -1;
+        }
+        if(a[el].toLowerCase() > b[el].toLowerCase()) {
+          return 1;
+        }
+        return 0;
+      });
+
+      document.querySelectorAll('.song').forEach(e => e.remove());
+      playList.forEach(song => printSongs(song));
+    }
   }
   
   /* sortPlaylist('genre'); */
+
+  listHeaders.addEventListener('click', (e) => {
+    const [el] = e.target.id.split('-');
+    sortPlaylist(el);
+  });
 
   

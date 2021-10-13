@@ -21,6 +21,7 @@ header h1 {
 /* Body design */
 body {
   background-color: rgb(55, 67, 34);
+  min-height: 100vh;
 }
 
 i {
@@ -146,4 +147,8 @@ button:hover {
 
 footer {
   margin-top: 2rem;
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
 }
