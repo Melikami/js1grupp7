@@ -38,6 +38,7 @@ addPlaylist.addEventListener("click", function newSong() {
     //Displays error message if all input fields haven't been entered
     if (artist == "" || song == "" || genre == "") {
       output.innerHTML = "You have to enter all information";
+      return;
     } else if (artist != "" && song != "" && genre != "") {
       output.innerHTML = "You have saved a track to your playlist. Save as many as you like!";
       console.log(artist, song, genre);
@@ -51,7 +52,11 @@ addPlaylist.addEventListener("click", function newSong() {
       
     }
     
-    printSongs(playList[playList.length - 1]);
+    if(playList.length == 2) {
+      printSongs(playList[playList.length - 1]);
+    } else {
+      printSongs(playList[0]);
+    }
     cleanInput();
   });
   
@@ -103,13 +108,12 @@ addPlaylist.addEventListener("click", function newSong() {
   //MELI: Cleans text output with click of a button
   cleanOutput.addEventListener("click", function cleanOutput() {
     document.getElementById("output").innerHTML = "";
-    document.getElementById("output1").innerHTML = "";
+    document.querySelectorAll('.song').forEach(e => e.remove());
     if (!playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.add('hidden');
     playList = [];
   });
 
   function sortPlaylist(el) {
-
     if(playList.length > 1) {
       // learned this here: https://www.youtube.com/watch?v=0d76_2sksWY
       playList.sort((a,b) => {
@@ -121,7 +125,6 @@ addPlaylist.addEventListener("click", function newSong() {
         }
         return 0;
       });
-
       document.querySelectorAll('.song').forEach(e => e.remove());
       playList.forEach(song => printSongs(song));
     }
@@ -138,3 +141,22 @@ addPlaylist.addEventListener("click", function newSong() {
   new Sortable(dragArea, {
     animation: 350,
   });
+
+
+  var state = false;
+
+function handleAction() {
+    if (state == false) {
+        // stuff for 'playnow' action
+        alert('första');
+        state = true;
+        return;
+    }
+
+    if (state == true) {
+        // stuff for 'stop' action
+        alert('andra')
+        state = false;
+        return;
+    }
+}
