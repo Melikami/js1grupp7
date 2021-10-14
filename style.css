@@ -100,17 +100,18 @@ button:hover {
   margin: 2rem auto 0 auto;
 }
 
-.playlist-container > div {
+.playlist-headers,
+.song {
   display: flex;
   align-items: center;
 }
 
-.playlist-container > div:first-child {
+.playlist-headers {
   background-color: rgb(34, 39, 21);
   color: rgb(182, 180, 180);
 }
 
-.playlist-container > div:nth-child(even) {
+.playlist-items > div:nth-child(odd) {
   background-color: rgb(84, 95, 56);
 }
 

@@ -1,9 +1,7 @@
+//global variables
 const playlistDisplay = document.querySelector('.playlist-container');
-/* const artistHeader = document.getElementById('artist-header');
-const songHeader = document.getElementById('song-header');
-const genreHeader = document.getElementById('genre-header'); */
-
 const listHeaders = document.querySelector('.playlist-headers');
+let playList = [];
 
 //MELI: class Song to create new objects
 class Song {
@@ -12,15 +10,14 @@ class Song {
       this.song = song;
       this.genre = genre;
     }
-    //Amir: Make string of every Song objekt.
+    //return obj-values
     songInfo() {
-      /* return "Låt " + this.song + " av " + this.artist + " från " + this.genre + "." ; */
       return this;
     }
   }
 
   
-let playList = [];
+// --------------------TESTDATA---------------------
 playList.push(new Song('Britta', 'One more time', 'pop'));
 playList.push(new Song('Hazelnut hobo', 'Covfef', 'rock'));
 playList.push(new Song('Dagge', 'Greedy thief', 'country'));
@@ -47,53 +44,33 @@ addPlaylist.addEventListener("click", function newSong() {
     //Pushes in song into array if all input fields have been entered
     if (artist != "" && song != "" && genre != "") {
       playList.push(new Song(artist, song, genre));
-      console.log(playList);
       //Amir: Write out song lite every time a new song pushes in.
-      
-    }
-    
-    if(playList.length == 2) {
       printSongs(playList[playList.length - 1]);
-    } else {
-      printSongs(playList[0]);
     }
+    // cleras inputfields
     cleanInput();
   });
   
-  
+  // print song
   function printSongs(item) {
+    // variable to insert song-div into
+    const playListItemsHolder = document.querySelector('.playlist-items');
 
-    /* let songOutput = "";
-      playList.forEach((item, i) => {
-      songOutput += `<p id="song">${item.songInfo()} <i class="fas fa-minus-circle"></i><p id="">`;
-      });
-      output1.innerHTML = songOutput; */
-
-     /*  playlistItems.innerHTML = ''; */
-
+    // show playlist-headers
      if (playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.remove('hidden');
 
-     //FOR TESTING EXISTING PLAYLIST
-      /* 
-      playList.forEach((item, i) => {
-        let obj = item.songInfo();
-        let playlistItem = document.createElement('div');
-
-        playlistItem.innerHTML = `
-        <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="genre-display">${obj.genre}</p><i class="fas fa-minus-circle"></i>`;
-
-        playlistDisplay.insertBefore(playlistItem, playlistItem.nextSibling);
-      }); */
-
-      //FOR USERINPUT 
+     // getting song info
       let obj = item.songInfo();
+
+      //create element to insert song-info into
       let playlistItem = document.createElement('div');
       playlistItem.classList.add('song');
 
       playlistItem.innerHTML = `
       <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="genre-display">${obj.genre}</p><i class="fas fa-minus-circle"></i>`;
 
-      playlistDisplay.insertBefore(playlistItem, playlistItem.nextSibling);
+      //insert new song-element
+      playListItemsHolder.insertBefore(playlistItem, playlistItem.nextSibling);
   }
 
   
@@ -113,6 +90,7 @@ addPlaylist.addEventListener("click", function newSong() {
     playList = [];
   });
 
+  //sort the list alfabetichally
   function sortPlaylist(el) {
     if(playList.length > 1) {
       // learned this here: https://www.youtube.com/watch?v=0d76_2sksWY
@@ -125,19 +103,22 @@ addPlaylist.addEventListener("click", function newSong() {
         }
         return 0;
       });
+
+      //remove printouts of unsorted playlist
       document.querySelectorAll('.song').forEach(e => e.remove());
+      // print sorted playlist
       playList.forEach(song => printSongs(song));
     }
   }
 
-
+  // eventlistener that hears if sorting-headers are clicked
   listHeaders.addEventListener('click', (e) => {
     const [el] = e.target.id.split('-');
     sortPlaylist(el);
   });
+  
 
-  const dragArea = document.querySelector(".playlist-container");
-
+  const dragArea = document.querySelector(".playlist-items");
   new Sortable(dragArea, {
     animation: 350,
   });
