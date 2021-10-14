@@ -1,4 +1,7 @@
-/* Övergripande styling för hela HTML-dokumentet */
+/* Ny font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+
+/* Styling HTML-document */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,7 +13,7 @@
   border-radius: 10px;
 }
 
-/* Design header */
+/* Header design */
 header h1 {
   position: relative;
   background-color: rgb(55, 67, 34);
@@ -21,14 +24,10 @@ header h1 {
 /* Body design */
 body {
   background-color: rgb(55, 67, 34);
-  min-height: 100vh;
+  padding-bottom: 10px;
 }
 
-i {
-  padding: 1rem;
-}
-
-/* Spellista design */
+/* Playlist design */
 #playlist,
 #userText {
   color: #fff;
@@ -39,52 +38,62 @@ i {
   margin-top: 10px;
   border: none;
 }
+/* Playlist text design */
 #userText {
   background: rgba(222, 222, 222, 0.2);
 }
 
-/* Sökfältsdesign */
+/* Input design */
 #enterArtist,
 #enterSong,
 #enterAlbum,
 #enterGenre {
   color: #fff;
-  background: rgba(222, 222, 222, 0.2);
+  background: rgba(222, 222, 222, 0.3);
   border-radius: 10px;
   pointer-events: all;
   padding: 5px;
   font-size: 20px;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
   border: none;
 }
 
+/* Input hover design */
 #enterArtist:hover,
 #enterSong:hover,
 #enterAlbum:hover,
 #enterGenre:hover {
-  background-color: black;
-  transition: 0.5s ease-in-out;
+  background-color: rgba(222, 222, 222, 0.1);
+  transition: 0.5s ease;
 }
 
-/* Knappdesign */
+/* Button design */
 button {
   color: #fff;
   background: rgba(222, 222, 222, 0.2);
   font-size: 20px;
   border-radius: 10px;
   padding: 2px 20px;
-  box-shadow: 0 0 10px;
   margin-top: 10px;
   border: none;
+  cursor: pointer;
 }
 
+/* Button hover design */
 button:hover {
   background-color: black;
-  transition: 0.5s ease-in-out;
+  transition: 0.5s ease;
+}
+/* Button click design */
+button:active {
+  color: black;
+  transition-delay: none;
 }
 
+/* Output design */
 #output {
-  margin-top: 2rem;
+  margin-top: 1rem;
+  font-size: larger;
 }
 
 .hidden {
@@ -112,21 +121,48 @@ button:hover {
 
 .artist-display,
 .song-display,
+.album-display,
 .genre-display {
   text-align: left;
   padding: 0.4rem 2% 0.4rem 2%;
 }
 
+p,
+i {
+  color: #fff;
+  opacity: 0.5;
+}
+
+i {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+i:hover {
+  background-color: rgba(222, 222, 222, 0.2);
+  opacity: 0.5;
+  border-radius: 10px;
+}
+
+i:active {
+  color: black;
+  opacity: 0.5;
+}
+
 .artist-display {
-  width: 30%;
+  width: 22.5%;
 }
 
 .song-display {
-  width: 40%;
+  width: 22.5%;
+}
+
+.album-display {
+  width: 22.5%;
 }
 
 .genre-display {
-  width: 25%;
+  width: 20%;
   padding-right: 2rem;
 }
 
@@ -136,19 +172,15 @@ button:hover {
 
 #artist-header:hover,
 #song-header:hover,
+#album-header:hover,
 #genre-header:hover {
   background-color: rgb(19, 22, 12);
   cursor: pointer;
 }
 
-/* .song {
-  margin: 0.2rem;
-} */
-
+/* Footer design */
 footer {
-  margin-top: 2rem;
-  position: absolute;
-  bottom: 0;
-  display: block;
+  position: relative;
   width: 100%;
+  margin-top: 100px;
 }
