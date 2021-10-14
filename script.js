@@ -21,11 +21,11 @@ class Song {
 
   
 let playList = [];
-/* playList.push(new Song('Britta', 'One more time', 'pop'));
+playList.push(new Song('Britta', 'One more time', 'pop'));
 playList.push(new Song('Hazelnut hobo', 'Covfef', 'rock'));
 playList.push(new Song('Dagge', 'Greedy thief', 'country'));
 playList.push(new Song('Locomotive Lars', 'chucka cho', 'alternative'));
-playList.forEach(song => printSongs(song)); */
+playList.forEach(song => printSongs(song));
 
 
   //MELI: Function to activate the script at the click of the button
@@ -126,12 +126,15 @@ addPlaylist.addEventListener("click", function newSong() {
       playList.forEach(song => printSongs(song));
     }
   }
-  
-  /* sortPlaylist('genre'); */
+
 
   listHeaders.addEventListener('click', (e) => {
     const [el] = e.target.id.split('-');
     sortPlaylist(el);
   });
 
-  
+  const dragArea = document.querySelector(".playlist-container");
+
+  new Sortable(dragArea, {
+    animation: 350,
+  });
