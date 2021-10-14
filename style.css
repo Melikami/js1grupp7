@@ -96,6 +96,10 @@ button:active {
   font-size: larger;
 }
 
+#output1 {
+  min-height: 57vh;
+}
+
 .hidden {
   visibility: hidden;
 }
@@ -105,17 +109,18 @@ button:active {
   margin: 2rem auto 0 auto;
 }
 
-.playlist-container > div {
+.playlist-headers,
+.song {
   display: flex;
   align-items: center;
 }
 
-.playlist-container > div:first-child {
+.playlist-headers {
   background-color: rgb(34, 39, 21);
   color: rgb(182, 180, 180);
 }
 
-.playlist-container > div:nth-child(even) {
+.playlist-items > div:nth-child(odd) {
   background-color: rgb(84, 95, 56);
 }
 
@@ -162,12 +167,23 @@ i:active {
 }
 
 .genre-display {
-  width: 20%;
-  padding-right: 2rem;
+  width: 30%;
 }
 
 .playlist-headers {
   margin-bottom: 1rem;
+}
+
+#artist-header {
+  width: 28.5%;
+}
+
+#song-header {
+  width: 37.5%;
+}
+
+#genre-header {
+  width: 35%;
 }
 
 #artist-header:hover,
@@ -178,9 +194,9 @@ i:active {
   cursor: pointer;
 }
 
-/* Footer design */
 footer {
-  position: relative;
+  margin-top: 2rem;
+  display: block;
   width: 100%;
   margin-top: 100px;
 }
