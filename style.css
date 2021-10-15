@@ -1,4 +1,7 @@
-/* Övergripande styling för hela HTML-dokumentet */
+/* Ny font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+
+/* Styling HTML-document */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,7 +13,7 @@
   border-radius: 10px;
 }
 
-/* Design header */
+/* Header design */
 header h1 {
   position: relative;
   background-color: rgb(55, 67, 34);
@@ -24,11 +27,7 @@ body {
   min-height: 100vh;
 }
 
-i {
-  padding: 1rem;
-}
-
-/* Spellista design */
+/* Playlist design */
 #playlist,
 #userText {
   color: #fff;
@@ -39,11 +38,12 @@ i {
   margin-top: 10px;
   border: none;
 }
+/* Playlist text design */
 #userText {
   background: rgba(222, 222, 222, 0.2);
 }
 
-/* Sökfältsdesign */
+/* Input design */
 #enterArtist,
 #enterSong,
 #enterAlbum,
@@ -58,6 +58,7 @@ i {
   border: none;
 }
 
+/* Input hover design */
 #enterArtist:hover,
 #enterSong:hover,
 #enterAlbum:hover,
@@ -66,7 +67,7 @@ i {
   transition: 0.5s ease-in-out;
 }
 
-/* Knappdesign */
+/* Button design */
 button {
   color: #fff;
   background: rgba(222, 222, 222, 0.2);
@@ -76,15 +77,24 @@ button {
   box-shadow: 0 0 10px;
   margin-top: 10px;
   border: none;
+  cursor: pointer;
 }
 
+/* Button hover design */
 button:hover {
   background-color: black;
   transition: 0.5s ease-in-out;
 }
+/* Button click design */
+button:active {
+  color: black;
+  transition-delay: none;
+}
 
+/* Output design */
 #output {
   margin-top: 2rem;
+  font-size: larger;
 }
 
 #output1 {
@@ -117,17 +127,44 @@ button:hover {
 
 .artist-display,
 .song-display,
+.album-display,
 .genre-display {
   text-align: left;
   padding: 0.4rem 2% 0.4rem 2%;
 }
 
+p,
+i {
+  color: #fff;
+  opacity: 0.5;
+}
+
+i {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+i:hover {
+  background-color: rgba(222, 222, 222, 0.2);
+  opacity: 0.5;
+  border-radius: 10px;
+}
+
+i:active {
+  color: black;
+  opacity: 0.5;
+}
+
 .artist-display {
-  width: 30%;
+  width: 22.5%;
 }
 
 .song-display {
-  width: 40%;
+  width: 22.5%;
+}
+
+.album-display {
+  width: 22.5%;
 }
 
 .genre-display {
@@ -152,6 +189,7 @@ button:hover {
 
 #artist-header:hover,
 #song-header:hover,
+#album-header:hover,
 #genre-header:hover {
   background-color: rgb(19, 22, 12);
   cursor: pointer;

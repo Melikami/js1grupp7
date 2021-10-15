@@ -14,61 +14,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js" defer></script>
     <script src="script.js" defer></script>
     <title>Grupp 7</title>
-</head>
-<body>
-<!----------------- Header ----------------->
+  </head>
+  <body>
+    <!----------------- Header ----------------->
     <header>
-    <h1>Create your playlist</h1>
+      <h1>Create your playlist</h1>
     </header>
-    <!----------------- Inputfält ----------------->
+    <!----------------- Userinputs ----------------->
     <div id="textInput">
       <label for="enterArtist"></label>
       <input
         type="text"
         placeholder="Enter artist"
         id="enterArtist"
-      /><br /><br />
+      /><br />
       <label for="enterSong"></label>
-      <input type="text" placeholder="Enter song" id="enterSong" /><br /><br />
-      <!-- <label for="enterAlbum"></label>
-      <input
-        type="text"
-        placeholder="Enter album"
-        id="enterAlbum"
-      /><br /><br /> -->
+      <input type="text" placeholder="Enter song" id="enterSong" /><br />
+        <label for="enterAlbum"></label>
+        <input type="text" placeholder="Enter album" id="enterAlbum"/><br />
       <label for="enterGenre"></label>
       <input
         type="text"
         placeholder="Enter genre"
         id="enterGenre"
-      /><br /><br />
+      /><br />
     </div>
-    <!----------------- Button AddToPlaylist ----------------->
-    <button id="addPlaylist">
-      Add to your playlist
-    </button>
-    
-
-    <!------------------Buttons to empty input and output-->
-    <button id="cleanOutput" value="Clean text">Clean text</button>
-
-
-    
+    <!----------------- Buttons "Add to playlist" & "clear playlist" ----------------->
+    <button id="addPlaylist">Add to playlist</button>
+    <button id="cleanOutput" value="Clean text">Clear playlist</button>
+    <!----------------- Output ----------------->
     <div id="output"></div>
     <div id="output1">
       <div class="playlist-container hidden">
-        <div class="playlist-headers">
+        <div class="playlist-headers"">
           <h3 id="artist-header" class="artist-display">Artist</h3>
           <h3 id="song-header" class="song-display">Song</h3>
+          <h3 id="album-header" class="album-display">Album</h3>
           <h3 id="genre-header" class="genre-display">Genre</h3>
         </div>
         <div class="playlist-items"></div>
       </div>
-
-
     </div>
-
-    
     <!----------------- Footer ----------------->
     <footer id="myFooter">
       <h5>

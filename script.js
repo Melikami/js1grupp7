@@ -5,9 +5,10 @@ let playList = [];
 
 //MELI: class Song to create new objects
 class Song {
-    constructor(artist, song, genre) {
+    constructor(artist, song, album, genre) {
       this.artist = artist;
       this.song = song;
+      this.album = album;
       this.genre = genre;
     }
     //return obj-values
@@ -18,10 +19,10 @@ class Song {
 
   
 // --------------------TESTDATA---------------------
-playList.push(new Song('Britta', 'One more time', 'pop'));
-playList.push(new Song('Hazelnut hobo', 'Covfef', 'rock'));
-playList.push(new Song('Dagge', 'Greedy thief', 'country'));
-playList.push(new Song('Locomotive Lars', 'chucka cho', 'alternative'));
+playList.push(new Song('Britta', 'One more time', 'greatest hits', 'pop'));
+playList.push(new Song('Hazelnut hobo', 'Covfef', 'greatest hits','rock'));
+playList.push(new Song('Dagge', 'Greedy thief', 'greatest hits','country'));
+playList.push(new Song('Locomotive Lars', 'chucka cho', 'greatest hits','alternative'));
 playList.forEach(song => printSongs(song));
 
 
@@ -30,20 +31,21 @@ addPlaylist.addEventListener("click", function newSong() {
     //Collecting values from the input fields
     let artist = document.getElementById("enterArtist").value;
     let song = document.getElementById("enterSong").value;
+    let album = document.getElementById("enterAlbum").value;
     let genre = document.getElementById("enterGenre").value;
   
     //Displays error message if all input fields haven't been entered
     if (artist == "" || song == "" || genre == "") {
-      output.innerHTML = "You have to enter all information";
+      output.innerHTML = "<p>You have to enter all information!</p>";
       return;
     } else if (artist != "" && song != "" && genre != "") {
-      output.innerHTML = "You have saved a track to your playlist. Save as many as you like!";
+      output.innerHTML = "<p>You have saved a track to your playlist. Save as many as you like!</p>";
       console.log(artist, song, genre);
     }
   
     //Pushes in song into array if all input fields have been entered
     if (artist != "" && song != "" && genre != "") {
-      playList.push(new Song(artist, song, genre));
+      playList.push(new Song(artist, song, album, genre));
       //Amir: Write out song lite every time a new song pushes in.
       printSongs(playList[playList.length - 1]);
     }
@@ -67,24 +69,23 @@ addPlaylist.addEventListener("click", function newSong() {
       playlistItem.classList.add('song');
 
       playlistItem.innerHTML = `
-      <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="genre-display">${obj.genre}</p><i class="fas fa-minus-circle"></i>`;
+      <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="album-display">${obj.album}</p><p class="genre-display">${obj.genre}</p><i class="far fa-edit"></i><i class="far fa-trash-alt"></i>`;
 
       //insert new song-element
       playListItemsHolder.insertBefore(playlistItem, playlistItem.nextSibling);
   }
-
-  
    
   //MELI: Cleans text input with click of a button
   function cleanInput() {
     document.getElementById("enterArtist").value = "";
     document.getElementById("enterSong").value = "";
+    document.getElementById("enterAlbum").value = "";
     document.getElementById("enterGenre").value = "";
   };
   
   //MELI: Cleans text output with click of a button
   cleanOutput.addEventListener("click", function cleanOutput() {
-    document.getElementById("output").innerHTML = "";
+    document.getElementById("output").innerHTML = "<p>Playlist cleared</p>";
     document.querySelectorAll('.song').forEach(e => e.remove());
     if (!playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.add('hidden');
     playList = [];
@@ -116,7 +117,6 @@ addPlaylist.addEventListener("click", function newSong() {
     const [el] = e.target.id.split('-');
     sortPlaylist(el);
   });
-  
 
   const dragArea = document.querySelector(".playlist-items");
   new Sortable(dragArea, {
