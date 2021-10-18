@@ -11,7 +11,7 @@ class Song {
       this.album = album;
       this.genre = genre;
     }
-    //return obj-values
+    //Amir & Tove: return obj-vales to print song
     songInfo() {
       return this;
     }
@@ -53,9 +53,9 @@ addPlaylist.addEventListener("click", function newSong() {
     cleanInput();
   });
   
-  // print song
+  // Tove & Amir: print song
   function printSongs(item) {
-    // variable to insert song-div into
+    //create variable to insert song-div into
     const playListItemsHolder = document.querySelector('.playlist-items');
 
     // show playlist-headers
@@ -93,7 +93,7 @@ addPlaylist.addEventListener("click", function newSong() {
 
   //MELI: variable to make every other mouse click true or false
   var state = false;
-  //sort the list alfabetichally
+  //Tove: sort the list alfabetichally
   function sortPlaylist(el) {
     if(playList.length > 1) {
       // learned this here: https://www.youtube.com/watch?v=0d76_2sksWY
