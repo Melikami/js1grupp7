@@ -28,21 +28,23 @@ playList.forEach(song => printSongs(song));
 
   //MELI: Function to activate the script at the click of the button
 addPlaylist.addEventListener("click", function newSong() {
-    //Collecting values from the input fields
+    //MELI: Collecting values from the input fields
     let artist = document.getElementById("enterArtist").value;
     let song = document.getElementById("enterSong").value;
     let album = document.getElementById("enterAlbum").value;
     let genre = document.getElementById("enterGenre").value;
   
-    //Displays error message if all input fields haven't been entered
+    //MELI: Displays error message if all input fields haven't been entered
     if (artist == "" || song == "" || album == "" || genre == "") {
       output.innerHTML = "<p>You have to enter all information!</p>";
       return;
+
+      //MELI: Displays that song has been saved  if all input fields has been entered
     } else if (artist != "" && song != "" && album != "" || genre != "") {
       output.innerHTML = "<p>You have saved a track to your playlist. Save as many as you like!</p>";
       console.log(artist, song, album, genre);
     }
-    //Pushes in song into array if all input fields have been entered
+    //MELI: Pushes in song into array if all input fields have been entered
       playList.push(new Song(artist, song, album, genre));
       //Amir: Write out song list every time a new song pushes in.
       printSongs(playList[playList.length - 1]);
@@ -89,6 +91,7 @@ addPlaylist.addEventListener("click", function newSong() {
     playList = [];
   });
 
+  //MELI: variable to make every other mouse click true or false
   var state = false;
   //sort the list alfabetichally
   function sortPlaylist(el) {
@@ -134,21 +137,3 @@ addPlaylist.addEventListener("click", function newSong() {
     animation: 350,
   });
 
-
-  var state = false;
-
-function handleAction() {
-    if (state == false) {
-        // stuff for 'playnow' action
-        alert('första');
-        state = true;
-        return;
-    }
-
-    if (state == true) {
-        // stuff for 'stop' action
-        alert('andra')
-        state = false;
-        return;
-    }
-}
