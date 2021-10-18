@@ -91,6 +91,7 @@ addPlaylist.addEventListener("click", function newSong() {
     playList = [];
   });
 
+  var state = false;
   //sort the list alfabetichally
   function sortPlaylist(el) {
     if(playList.length > 1) {
@@ -107,8 +108,20 @@ addPlaylist.addEventListener("click", function newSong() {
 
       //remove printouts of unsorted playlist
       document.querySelectorAll('.song').forEach(e => e.remove());
-      // print sorted playlist
-      playList.forEach(song => printSongs(song));
+      
+      //MELI: Prints songs in alphabetical order at click
+      if (state == false) {
+      playList.forEach(song => printSongs(song));   //for Each loop made by TOVE
+      state = true;
+      return;
+      }
+      //MELI: Prints songs in reversed alphabetical order at every other click
+      if (state == true) {
+        // print sorted playlist
+      playList.reverse().forEach(song => printSongs(song));
+      state = false;
+      return;
+      }
     }
   }
 
