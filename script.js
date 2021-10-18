@@ -35,21 +35,19 @@ addPlaylist.addEventListener("click", function newSong() {
     let genre = document.getElementById("enterGenre").value;
   
     //Displays error message if all input fields haven't been entered
-    if (artist == "" || song == "" || genre == "") {
+    if (artist == "" || song == "" || album == "" || genre == "") {
       output.innerHTML = "<p>You have to enter all information!</p>";
       return;
-    } else if (artist != "" && song != "" && genre != "") {
+    } else if (artist != "" && song != "" && album != "" || genre != "") {
       output.innerHTML = "<p>You have saved a track to your playlist. Save as many as you like!</p>";
-      console.log(artist, song, genre);
+      console.log(artist, song, album, genre);
     }
-  
     //Pushes in song into array if all input fields have been entered
-    if (artist != "" && song != "" && genre != "") {
       playList.push(new Song(artist, song, album, genre));
-      //Amir: Write out song lite every time a new song pushes in.
+      //Amir: Write out song list every time a new song pushes in.
       printSongs(playList[playList.length - 1]);
-    }
-    // cleras inputfields
+    
+    // clears input fields
     cleanInput();
   });
   
