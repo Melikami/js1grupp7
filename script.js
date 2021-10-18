@@ -137,3 +137,14 @@ addPlaylist.addEventListener("click", function newSong() {
     animation: 350,
   });
 
+  //MELI: Function that lets you print the contents of the page/playlist
+  function display(printDiv) {
+    var printContents = document.getElementById(printDiv).innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+  }
