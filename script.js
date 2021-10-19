@@ -1,32 +1,32 @@
-//global variables
+//Global variables
 const playlistDisplay = document.querySelector('.playlist-container');
 const listHeaders = document.querySelector('.playlist-headers');
 let playList = [];
-
-//MELI: class Song to create new objects
+const playlistItems = document.querySelector(".playlist-items");
+//MELI: Class Song to create new objects
 class Song {
-    constructor(artist, song, album, genre) {
+    constructor(id, artist, song, album, genre) {
+      this.id = id;
       this.artist = artist;
       this.song = song;
       this.album = album;
       this.genre = genre;
     }
-    //return obj-values
+    //Return obj-values
     songInfo() {
       return this;
     }
-  }
-
-  
+}
 // --------------------TESTDATA---------------------
-playList.push(new Song('Britta', 'One more time', 'greatest hits', 'pop'));
-playList.push(new Song('Hazelnut hobo', 'Covfef', 'greatest hits','rock'));
-playList.push(new Song('Dagge', 'Greedy thief', 'greatest hits','country'));
-playList.push(new Song('Locomotive Lars', 'chucka cho', 'greatest hits','alternative'));
+playList.push(new Song(1, 'Britta', 'One more time', 'greatest hits', 'pop'));
+playList.push(new Song(2, 'Hazelnut hobo', 'Covfef', 'greatest hits','rock'));
+playList.push(new Song(3, 'Dagge', 'Greedy thief', 'greatest hits','country'));
+playList.push(new Song(4, 'Locomotive Lars', 'chucka cho', 'greatest hits','alternative'));
+playList.push(new Song(5, 'Daft Punk', 'Voyager', 'Discovery','Acid House'));
+
 playList.forEach(song => printSongs(song));
 
-
-  //MELI: Function to activate the script at the click of the button
+//MELI: Function to activate the script at the click of the button
 addPlaylist.addEventListener("click", function newSong() {
     //Collecting values from the input fields
     let artist = document.getElementById("enterArtist").value;
@@ -35,46 +35,66 @@ addPlaylist.addEventListener("click", function newSong() {
     let genre = document.getElementById("enterGenre").value;
   
     //Displays error message if all input fields haven't been entered
-    if (artist == "" || song == "" || genre == "") {
+    if (artist == "" || song == "" || album == "" || genre == "") {
       output.innerHTML = "<p>You have to enter all information!</p>";
       return;
-    } else if (artist != "" && song != "" && genre != "") {
+    } else if (artist != "" && song != "" && album != "" &&  genre != "") {
       output.innerHTML = "<p>You have saved a track to your playlist. Save as many as you like!</p>";
       console.log(artist, song, genre);
     }
-  
-    //Pushes in song into array if all input fields have been entered
-    if (artist != "" && song != "" && genre != "") {
-      playList.push(new Song(artist, song, album, genre));
-      //Amir: Write out song lite every time a new song pushes in.
+    // Skapa ett ID till samtliga värden i arrayen
+      let id;
+      if (playList.length === 0) {
+        id = 0;
+      } else {
+        id = playList[playList.length -1].id +1;
+      }
+      playList.push(new Song(id, artist, song, album, genre));
+      //Amir: Write out song every time a new song pushes in.
       printSongs(playList[playList.length - 1]);
-    }
-    // cleras inputfields
+      console.log(playList);
+    //Clears inputfields
     cleanInput();
   });
-  
-  // print song
+  //Function Print song
   function printSongs(item) {
-    // variable to insert song-div into
+    // Variable to insert song-div into
     const playListItemsHolder = document.querySelector('.playlist-items');
 
-    // show playlist-headers
+    // Show playlist-headers
      if (playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.remove('hidden');
 
-     // getting song info
+     // Getting song info
       let obj = item.songInfo();
-
-      //create element to insert song-info into
+      // Create element to insert song-info into
       let playlistItem = document.createElement('div');
       playlistItem.classList.add('song');
+      
+      // Create unique DIV id
+      playlistItem.setAttribute("id", item.id);
 
-      playlistItem.innerHTML = `
-      <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="album-display">${obj.album}</p><p class="genre-display">${obj.genre}</p><i class="far fa-edit"></i><i class="far fa-trash-alt"></i>`;
+      playlistItem.innerHTML = `<p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="album-display">${obj.album}</p><p class="genre-display">${obj.genre}</p> <button id="btnTrash"<i class="far fa-trash-alt"></i></button>`;
 
-      //insert new song-element
+      // Insert new song-element
       playListItemsHolder.insertBefore(playlistItem, playlistItem.nextSibling);
   }
-   
+   // Delete function
+    playlistItems.addEventListener("click", (e) => {
+    if (e.target.id === 'btnTrash') {
+      const songId = Number(e.target.parentNode.id);
+      const ids = playList.map(e => e.id);
+      const index = ids.indexOf(songId);
+      playList.splice(index, 1);
+
+      document.querySelectorAll('.song').forEach(e => e.remove());
+
+      //Print sorted playlist
+      playList.forEach(song => printSongs(song));
+      console.log(playList);
+    }
+    console.log('btnTrash');
+
+  });
   //MELI: Cleans text input with click of a button
   function cleanInput() {
     document.getElementById("enterArtist").value = "";
@@ -82,16 +102,7 @@ addPlaylist.addEventListener("click", function newSong() {
     document.getElementById("enterAlbum").value = "";
     document.getElementById("enterGenre").value = "";
   };
-  
-  //MELI: Cleans text output with click of a button
-  cleanOutput.addEventListener("click", function cleanOutput() {
-    document.getElementById("output").innerHTML = "<p>Playlist cleared</p>";
-    document.querySelectorAll('.song').forEach(e => e.remove());
-    if (!playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.add('hidden');
-    playList = [];
-  });
-
-  //sort the list alfabetichally
+  //Sorts the list alfabetichally
   function sortPlaylist(el) {
     if(playList.length > 1) {
       // learned this here: https://www.youtube.com/watch?v=0d76_2sksWY
@@ -104,28 +115,23 @@ addPlaylist.addEventListener("click", function newSong() {
         }
         return 0;
       });
-
-      //remove printouts of unsorted playlist
+      //Remove printouts of unsorted playlist
       document.querySelectorAll('.song').forEach(e => e.remove());
-      // print sorted playlist
+      //Print sorted playlist
       playList.forEach(song => printSongs(song));
     }
   }
-
-  // eventlistener that hears if sorting-headers are clicked
+  //Eventlistener that hears if sorting-headers are clicked
   listHeaders.addEventListener('click', (e) => {
     const [el] = e.target.id.split('-');
     sortPlaylist(el);
   });
-
+  //Sebastian & Tove: Dragable
   const dragArea = document.querySelector(".playlist-items");
   new Sortable(dragArea, {
     animation: 350,
   });
-
-
   var state = false;
-
 function handleAction() {
     if (state == false) {
         // stuff for 'playnow' action
@@ -133,7 +139,6 @@ function handleAction() {
         state = true;
         return;
     }
-
     if (state == true) {
         // stuff for 'stop' action
         alert('andra')
@@ -141,3 +146,4 @@ function handleAction() {
         return;
     }
 }
+

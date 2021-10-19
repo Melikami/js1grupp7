@@ -1,12 +1,12 @@
 /* Ny font */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
 /* Styling HTML-document */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
@@ -54,7 +54,7 @@ body {
   pointer-events: all;
   padding: 5px;
   font-size: 20px;
-  margin-bottom: 2px;
+  margin-top: 5px;
   border: none;
 }
 
@@ -74,7 +74,6 @@ button {
   font-size: 20px;
   border-radius: 10px;
   padding: 2px 20px;
-  box-shadow: 0 0 10px;
   margin-top: 10px;
   border: none;
   cursor: pointer;
@@ -90,10 +89,9 @@ button:active {
   color: black;
   transition-delay: none;
 }
-
 /* Output design */
 #output {
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: larger;
 }
 
@@ -111,7 +109,16 @@ button:active {
 }
 
 .playlist-headers,
-.song {
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.playlist-items > div:nth-child(odd) {
+  display: flex;
+  align-items: center;
+}
+.playlist-items > div:nth-child(even) {
   display: flex;
   align-items: center;
 }
@@ -152,6 +159,7 @@ i:hover {
 
 i:active {
   color: black;
+  background-color: rgba(222, 222, 222, 0.1);
   opacity: 0.5;
 }
 
@@ -160,11 +168,11 @@ i:active {
 }
 
 .song-display {
-  width: 22.5%;
+  width: 25%;
 }
 
 .album-display {
-  width: 22.5%;
+  width: 25%;
 }
 
 .genre-display {
@@ -176,15 +184,19 @@ i:active {
 }
 
 #artist-header {
-  width: 28.5%;
+  width: 20%;
 }
 
 #song-header {
-  width: 37.5%;
+  width: 21%;
+}
+
+#album-header {
+  width: 20%;
 }
 
 #genre-header {
-  width: 35%;
+  width: 25%;
 }
 
 #artist-header:hover,
