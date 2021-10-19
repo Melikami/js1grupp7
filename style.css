@@ -1,12 +1,12 @@
 /* Ny font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
 /* Styling HTML-document */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
@@ -181,11 +181,11 @@ i:active {
 }
 
 #artist-header {
-  width: 25%;
+  width: 26%;
 }
 
 #song-header {
-  width: 25%;
+  width: 26%;
 }
 
 #album-header {
