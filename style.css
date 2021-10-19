@@ -1,12 +1,12 @@
 /* Ny font */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
 /* Styling HTML-document */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
@@ -74,10 +74,14 @@ button {
   font-size: 20px;
   border-radius: 10px;
   padding: 2px 20px;
-  box-shadow: 0 0 10px;
   margin-top: 10px;
   border: none;
   cursor: pointer;
+}
+
+#btnTrash {
+  margin: 0;
+  margin-right: 5px;
 }
 
 /* Button hover design */
@@ -106,7 +110,7 @@ button:active {
 }
 
 .playlist-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 2rem auto 0 auto;
 }
 
@@ -114,6 +118,7 @@ button:active {
 .song {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .playlist-headers {
@@ -176,15 +181,19 @@ i:active {
 }
 
 #artist-header {
-  width: 28.5%;
+  width: 25%;
 }
 
 #song-header {
-  width: 37.5%;
+  width: 25%;
+}
+
+#album-header {
+  width: 25%;
 }
 
 #genre-header {
-  width: 35%;
+  width: 43%;
 }
 
 #artist-header:hover,
