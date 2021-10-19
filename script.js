@@ -2,10 +2,12 @@
 const playlistDisplay = document.querySelector('.playlist-container');
 const listHeaders = document.querySelector('.playlist-headers');
 let playList = [];
+const playlistItems = document.querySelector(".playlist-items");
 
 //MELI: class Song to create new objects
 class Song {
-    constructor(artist, song, album, genre) {
+    constructor(id, artist, song, album, genre) {
+      this.id = id;
       this.artist = artist;
       this.song = song;
       this.album = album;
@@ -16,15 +18,12 @@ class Song {
       return this;
     }
   }
-
-  
 // --------------------TESTDATA---------------------
-playList.push(new Song('Britta', 'One more time', 'greatest hits', 'pop'));
-playList.push(new Song('Hazelnut hobo', 'Covfef', 'greatest hits','rock'));
-playList.push(new Song('Dagge', 'Greedy thief', 'greatest hits','country'));
-playList.push(new Song('Locomotive Lars', 'chucka cho', 'greatest hits','alternative'));
+playList.push(new Song(1, 'Britta', 'One more time', 'greatest hits', 'pop'));
+playList.push(new Song(2, 'Hazelnut hobo', 'Covfef', 'greatest hits','rock'));
+playList.push(new Song(3, 'Dagge', 'Greedy thief', 'greatest hits','country'));
+playList.push(new Song(4, 'Locomotive Lars', 'chucka cho', 'greatest hits','alternative'));
 playList.forEach(song => printSongs(song));
-
 
   //MELI: Function to activate the script at the click of the button
 addPlaylist.addEventListener("click", function newSong() {
@@ -44,10 +43,20 @@ addPlaylist.addEventListener("click", function newSong() {
       output.innerHTML = "<p>You have saved a track to your playlist. Save as many as you like!</p>";
       console.log(artist, song, album, genre);
     }
+    
+    // Skapa ett ID till samtliga värden i arrayen
+    let id;
+    if (playList.length === 0) {
+      id = 0;
+    } else {
+      id = playList[playList.length -1].id +1;
+    }
+
     //MELI: Pushes in song into array if all input fields have been entered
-      playList.push(new Song(artist, song, album, genre));
-      //Amir: Write out song list every time a new song pushes in.
+      playList.push(new Song(id, artist, song, album, genre));
+      //Amir: Write out song every time a new song pushes in.
       printSongs(playList[playList.length - 1]);
+      console.log(playList);
     
     // clears input fields
     cleanInput();
@@ -60,21 +69,45 @@ addPlaylist.addEventListener("click", function newSong() {
 
     // show playlist-headers
      if (playlistDisplay.classList.contains('hidden')) playlistDisplay.classList.remove('hidden');
-
+  
      // getting song info
       let obj = item.songInfo();
 
       //create element to insert song-info into
       let playlistItem = document.createElement('div');
       playlistItem.classList.add('song');
+      playlistItem.setAttribute("id", item.id);
+
 
       playlistItem.innerHTML = `
-      <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="album-display">${obj.album}</p><p class="genre-display">${obj.genre}</p><i class="far fa-edit"></i><i class="far fa-trash-alt"></i>`;
+      <p class="artist-display">${obj.artist}</p><p class="song-display">${obj.song}</p><p class="album-display">${obj.album}</p><p class="genre-display">${obj.genre}</p><button id="btnTrash"<i class="far fa-trash-alt"></i></button>`;
 
       //insert new song-element
       playListItemsHolder.insertBefore(playlistItem, playlistItem.nextSibling);
   }
-   
+
+   // Delete function
+   playlistItems.addEventListener("click", (e) => {
+    if (e.target.id === 'btnTrash') {
+      const songId = Number(e.target.parentNode.id);
+      const ids = playList.map(e => e.id);
+      const index = ids.indexOf(songId);
+      playList.splice(index, 1);
+      document.querySelectorAll('.song').forEach(e => e.remove());
+
+      //Print sorted playlist
+      playList.forEach(song => printSongs(song));
+      console.log(playList);
+    }
+    console.log('btnTrash');
+
+document.querySelectorAll('.song').forEach(e => e.remove());
+      //Print sorted playlist
+      playList.forEach(song => printSongs(song));
+
+      console.log(playList);
+    });
+  
   //MELI: Cleans text input with click of a button
   function cleanInput() {
     document.getElementById("enterArtist").value = "";
