@@ -49,7 +49,11 @@ addPlaylist.addEventListener("click", function newSong() {
     if (playList.length === 0) {
       id = 0;
     } else {
-      id = playList[playList.length -1].id +1;
+      // find highest id number
+      let ids = playList.map(el => el.id);
+      let highestId = ids.reduce((a,b) => a > b ? a : b);
+      console.log(highestId);
+      id = highestId + 1;
     }
 
     //MELI: Pushes in song into array if all input fields have been entered
