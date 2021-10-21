@@ -46,9 +46,15 @@ addPlaylist.addEventListener("click", function newSong() {
     
     // Skapa ett ID till samtliga värden i arrayen
     let id;
+    // if array is empty
     if (playList.length === 0) {
       id = 0;
+      // if array contains only one song
+    } else if(playList.length === 1){
+      id = playList[0].id + 1;
+      // if array has multiple entries
     } else {
+      // if array has been sorted alpabetically and ids are not in order
       // find highest id number
       let ids = playList.map(el => el.id);
       let highestId = ids.reduce((a,b) => a > b ? a : b);
